@@ -1,0 +1,15 @@
+main
+    output "Hello SBLang2C!\n"
+    if 1==1
+        output "If you can see this, then 1=1.\n(seems this is bullshit)\n"
+    end
+    output "------------------\n"
+    if 1==2
+        output "If you can see this, then 1=2.\n(How was that possible!)\n"
+    else
+        output "If you can see this, then 1!=2.\n(Bullshits again!)\n"
+    end
+    string awa
+    set awa="this is a goog string.\n"
+    output awa
+end
