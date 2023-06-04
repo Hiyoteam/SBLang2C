@@ -41,7 +41,7 @@ with open("_sblang_temp.cpp","w+",encoding="utf-8") as f:
     f.write(runtime.export_final())
 print(f" {timer.woo()} ms")
 print("-| Compiling with gcc")
-command=f"g++ _sblang_temp.cpp -o {name_executeable}"
+command=f"g++ _sblang_temp.cpp -finput-charset=UTF-8 -fexec-charset=GBK -o {name_executeable}"
 try:
     os.remove(name_executeable)
 except:

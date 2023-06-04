@@ -19,6 +19,12 @@ def _set(runtime,line):
 def inputto(runtime,line):
     to=line[1]
     return f"getline(cin,{to});"
+def loop(runtime,line):
+    command=line[1].split(" ")
+    if command[0] == "forever":
+        return "while(1){"
+    else:
+        raise CompileError(f"Unknown loop statement: {command[0]}")
 bulitins=(
     {
         "end":"}",
@@ -30,6 +36,7 @@ bulitins=(
         "if":_if,
         "string":makeString,
         "set":_set,
-        "inputto":inputto
+        "inputto":inputto,
+        "loop":loop
     }
 )
