@@ -10,6 +10,7 @@ timer=Timer()
 args=sys.argv
 name=args[0]
 filename=args[-1]
+nocomp= args[1] == "nocompile"
 name_executeable=".".join(filename.split(".")[:-1])+".exe"
 if len(args) < 2:
     print(f"usage: {name} [filename]")
@@ -40,6 +41,9 @@ timer.yee()
 with open("_sblang_temp.cpp","w+",encoding="utf-8") as f:
     f.write(runtime.export_final())
 print(f" {timer.woo()} ms")
+if nocomp:
+    print("-| Exiting.")
+    exit(0)
 print("-| Compiling with gcc")
 command=f"g++ _sblang_temp.cpp -finput-charset=UTF-8 -fexec-charset=GBK -o {name_executeable}"
 try:

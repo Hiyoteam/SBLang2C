@@ -1,0 +1,8 @@
+main
+    loop 10 times as loop
+        loopindex loop index
+        output "In Loop: "
+        output index
+        output "\n"
+    end
+end

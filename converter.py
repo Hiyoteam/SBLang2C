@@ -44,6 +44,7 @@ class Runtime:
     def __init__(self):
         self.heads,self.head,self.externs,self.functions,self.main=[],[],[],[],[]
         self.type_detector={}
+        self.loops={}
     def translate(self,line):
         translated=bulitins.translate(self,line)
         if translated == False:
