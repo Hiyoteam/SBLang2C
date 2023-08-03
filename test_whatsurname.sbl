@@ -1,6 +1,6 @@
 main
     output "Hello, So What's your name?\n(Input) My name is "
-    string inputs
+    let string inputs
     inputto inputs
     output "Well, Hello, "+inputs+"!"
 end

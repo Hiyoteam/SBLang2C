@@ -1,2 +1,3 @@
 @echo off
-py sblang2c.py %1 %2
+echo SBLang2C runing.
+python sblang2c.py %1 %2

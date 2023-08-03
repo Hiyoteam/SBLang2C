@@ -1,4 +1,5 @@
-import converter,sys,os,time
+import converter,sys,os,time,logging
+logging.basicConfig(level=logging.DEBUG)
 class Timer:
     def __init__(self) -> None:
         self.stt=0
@@ -11,7 +12,7 @@ args=sys.argv
 name=args[0]
 filename=args[-1]
 nocomp= args[1] == "nocompile"
-name_executeable=".".join(filename.split(".")[:-1])+".exe"
+name_executeable=".".join(filename.split(".")[:-1])
 if len(args) < 2:
     print(f"usage: {name} [filename]")
     exit(1)
@@ -34,6 +35,8 @@ try:
         runtime.translate(i)
 except BaseException as e:
     print(f"\n! Error when converting: {e}")
+    from traceback import print_exc
+    print_exc()
     exit(1)
 print(f" {timer.woo()} ms")
 print("- -| Writing to temp file",end="",flush=True)
@@ -44,14 +47,14 @@ print(f" {timer.woo()} ms")
 if nocomp:
     print("-| Exiting.")
     exit(0)
-print("-| Compiling with gcc")
-command=f"g++ _sblang_temp.cpp -finput-charset=UTF-8 -fexec-charset=GBK -o {name_executeable}"
+print("-| Compiling with g++")
+command=f"g++ _sblang_temp.cpp -finput-charset=UTF-8 -std=c++20 -o {name_executeable}"
 try:
     os.remove(name_executeable)
 except:
     pass
 gcc=os.popen(command)
-print("- -| Awaiting GCC execute",end="",flush=True)
+print("- -| Awaiting G++ execute",end="",flush=True)
 timer.yee()
 times=0
 gcc.read()
