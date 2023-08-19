@@ -1,8 +1,8 @@
-define plusOne number
-    return number+1
+define add num1 num2
+    return (num1+num2)
 define end
 main
     output "1+1="
-    output plusOne(1)
+    output add(1,1)
     output "\n"
 end
