@@ -30,8 +30,7 @@ def loop(runtime,line):
     if command[0] == "forever":
         return "while(1){"
     if len(command)==4 and (command[1] == "times" or command[1] == "time") and command[2] == "as":
-        loopname=_get_random_varname()
-        runtime.loops[command[3]]=loopname
+        loopname=command[3]
         return f"for(int {loopname} = 0; {loopname} < {int(command[0])}; {loopname}++)"+"{"
     else:
         raise CompileError(f"Unknown loop statement: {command[0]}")
@@ -80,13 +79,6 @@ def define(runtime,line):
     runtime.cache["DEFINE_DATA"]=info
 def returns(runtime,line):
     return f"return {line[1]};"
-def loopindex(runtime,line):
-    lid=line[1].split(" ")
-    to=lid[1]
-    lid=lid[0]
-    if lid not in runtime.loops.keys():
-        raise CompileError(f"LoopID doesnt exist")
-    return f"int {to} = {runtime.loops[lid]};"
 def var(runtime,line):
     line = line[1].split("=")
     if len(line) == 1:
@@ -114,7 +106,6 @@ bulitins=(
         "set":_set,
         "inputto":inputto,
         "loop":loop,
-        "loopindex":loopindex,
         "var":var,
         "let":let,
         "define":define,

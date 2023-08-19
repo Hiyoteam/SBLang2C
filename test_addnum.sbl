@@ -1,0 +1,9 @@
+define addone number
+    return (number+1)
+define end
+main
+    loop 10000 times as i
+        output addone(i)
+        output "\n"
+    end
+end
