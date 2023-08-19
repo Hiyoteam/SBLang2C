@@ -1,7 +1,7 @@
 # SBLang2C技术说明书
 [![wakatime](https://wakatime.com/badge/user/446b98ad-62be-496b-bda1-7cec523e3316/project/c0644e57-360b-4f28-8e2f-2ea80eae01d0.svg)](https://wakatime.com/badge/user/446b98ad-62be-496b-bda1-7cec523e3316/project/c0644e57-360b-4f28-8e2f-2ea80eae01d0)
 ## 一、基本原理
-&emsp;本程序通过将SBLang程序转换为C/C++代码并使用GCC编译来使SBLang程序可以编译为可执行文件，且运行效率更好。
+&emsp;本程序通过将SBLang程序转换为C++代码并使用G++编译来使SBLang程序可以编译为可执行文件，且运行效率更好。
 ## 二、执行标准
 &emsp;使用SBLang-Syntax-V4标准。
 ## 三、程序组成
