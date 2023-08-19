@@ -9,7 +9,6 @@ main
     else
         output "If you can see this, then 1!=2.\n(Bullshits again!)\n"
     end
-    string awa
-    set awa="this is a goog string.\n"
+    var awa="This is a goog string."
     output awa
 end
