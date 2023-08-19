@@ -1,6 +1,6 @@
 <h1 align="center">✨SBLang2C✨</h1>
-<p align="center">简单的SBLang编译器实现</p>
-<br><img align="center" src="https://wakatime.com/badge/user/446b98ad-62be-496b-bda1-7cec523e3316/project/c0644e57-360b-4f28-8e2f-2ea80eae01d0.svg">
+<p align="center">简单的SBLang编译器实现
+<br><img src="https://wakatime.com/badge/user/446b98ad-62be-496b-bda1-7cec523e3316/project/c0644e57-360b-4f28-8e2f-2ea80eae01d0.svg"></p>
 
 
 ## 一、基本原理
