@@ -13,7 +13,7 @@ def _get_random_varname():
 def output(runtime,line):
     return f"cout << {line[1]};\n"
 def main(runtime,line):
-    runtime.heads.add("iostream")
+    runtime.heads.add("bits/stdc++.h")
     runtime.head+=["using namespace std;"]
     runtime.main+=["int main(int argc,char **argv,char **envp){"]
 def _if(runtime,line):
@@ -24,7 +24,7 @@ def _set(runtime,line):
     runtime.main+=[data+";"]
 def inputto(runtime,line):
     to=line[1]
-    return f"getline(cin,{to});"
+    return f"cin >> {to};"
 def loop(runtime,line):
     command=line[1].split(" ")
     if command[0] == "forever":

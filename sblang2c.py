@@ -13,6 +13,14 @@ filename=args[-1]
 argss= args[1:-1]
 nocomp="--no-compile" in argss
 debug="--debug" in argss
+gcc_executable="g++"
+for arg in argss:
+    arg=arg.split("=",1)
+    if len(arg) == 1:
+        continue
+    if arg[0] == "--gcc-binary":
+        gcc_executable=arg[1]
+
 if debug:
     logging.basicConfig(level=logging.DEBUG)
 name_executeable=".".join(filename.split(".")[:-1])
@@ -59,7 +67,7 @@ if nocomp:
     print("-| Exiting.")
     exit(0)
 print("-| Compiling with g++")
-command=f"g++ _sblang_temp.cpp -finput-charset=UTF-8 -std=c++20 -o {name_executeable}"
+command=f"{gcc_executable} _sblang_temp.cpp -finput-charset=UTF-8 -std=c++20 -o {name_executeable}"
 try:
     os.remove(name_executeable)
 except:

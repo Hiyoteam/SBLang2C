@@ -1,0 +1,19 @@
+define add num1 num2
+    return (num1+num2)
+define end
+main
+    let int first_num
+    let int second_num
+    let int result
+    output "First number: "
+    inputto first_num
+    output "Second number: "
+    inputto second_num
+    set result=add(first_num,second_num)
+    output first_num
+    output "+"
+    output second_num
+    output "="
+    output result
+    output "\n"
+end
