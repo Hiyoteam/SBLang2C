@@ -1,5 +1,4 @@
 import converter,sys,os,time,logging
-logging.basicConfig(level=logging.DEBUG)
 class Timer:
     def __init__(self) -> None:
         self.stt=0
@@ -11,10 +10,14 @@ timer=Timer()
 args=sys.argv
 name=args[0]
 filename=args[-1]
-nocomp= args[1] == "nocompile"
+argss= args[1:-1]
+nocomp="--no-compile" in argss
+debug="--debug" in argss
+if debug:
+    logging.basicConfig(level=logging.DEBUG)
 name_executeable=".".join(filename.split(".")[:-1])
 if len(args) < 2:
-    print(f"usage: {name} [filename]")
+    print(f"usage: {name} [options] [filename]")
     exit(1)
 print("Welcome to SBLang2C CLI!\n-| Reading File",end="",flush=True)
 timer.start()
@@ -30,6 +33,8 @@ timer.start()
 runtime=converter.Runtime()
 print(f" {timer.end()} ms")
 print("- -| Converting",end="",flush=True)
+if debug:
+    print()
 try:
     for i in code.splitlines():
         runtime.translate(i)
@@ -38,11 +43,17 @@ except BaseException as e:
     from traceback import print_exc
     print_exc()
     exit(1)
+if debug:
+    print()
 print(f" {timer.end()} ms")
 print("- -| Writing to temp file",end="",flush=True)
 timer.start()
+if debug:
+    print()
 with open("_sblang_temp.cpp","w+",encoding="utf-8") as f:
     f.write(runtime.export_final())
+if debug:
+    print()
 print(f" {timer.end()} ms")
 if nocomp:
     print("-| Exiting.")
