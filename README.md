@@ -13,6 +13,8 @@
  - --no-compile, 仅翻译为c++而不编译
  - --debug, 显示所有调试信息
  - --gcc-binary=xxx, 制定g++可执行文件位置
+ - --gcc-arg=xxx, 可添加多个
+ - --output=xxx, 输出的文件名
 
 Examples:  
 `python3 sblang2c.py --debug some_file.sbl`
@@ -26,6 +28,12 @@ Examples:
 
 `python3 sblang2c.py --gcc-binary=/opt/homebrew/bin/g++-13 --debug some_file.sbl`
 转换some_file.sbl, 使用MacOS Homebrew安装的G++ 13进行编译并打印所有调试信息。
+
+`python3 sblang2c.py --debug --gcc-arg=std=c++20 some_file.sbl`
+使用C++20标准编译some_file.sbl, 输出全部调试信息。  
+
+`python3 sblang2c.py --debug --output=executable.exe some_file.sbl`
+编译some_file.sbl, 输出全部调试信息并将最终的可执行文件输出为`executable.exe`。 
 
 ## 四、程序组成
  - HEADS (保存在编译Runtime内) 需要引入的头文件

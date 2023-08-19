@@ -14,16 +14,21 @@ argss= args[1:-1]
 nocomp="--no-compile" in argss
 debug="--debug" in argss
 gcc_executable="g++"
+gcc_extra_args=[]
+name_executeable=".".join(filename.split(".")[:-1])
 for arg in argss:
     arg=arg.split("=",1)
     if len(arg) == 1:
         continue
     if arg[0] == "--gcc-binary":
         gcc_executable=arg[1]
+    if arg[0] == "--gcc-arg":
+        gcc_extra_args.append("-"+arg[1])
+    if arg[0] == "--output":
+        name_executeable=arg[1]
 
 if debug:
     logging.basicConfig(level=logging.DEBUG)
-name_executeable=".".join(filename.split(".")[:-1])
 if len(args) < 2:
     print(f"usage: {name} [options] [filename]")
     exit(1)
@@ -68,6 +73,9 @@ if nocomp:
     exit(0)
 print("-| Compiling with g++")
 command=f"{gcc_executable} _sblang_temp.cpp -finput-charset=UTF-8 -std=c++20 -o {name_executeable}"
+if gcc_extra_args != []:
+    for i in gcc_extra_args:
+        command+=" "+i
 try:
     os.remove(name_executeable)
 except:
