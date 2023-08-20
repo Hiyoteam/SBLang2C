@@ -1,0 +1,5 @@
+main
+    let int num1,num2
+    inputto num1 num2
+    output num1+num2
+end

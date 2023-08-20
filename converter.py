@@ -24,8 +24,11 @@ def _set(runtime,line):
     data=line[1]
     runtime.main+=[data+";"]
 def inputto(runtime,line):
-    to=line[1]
-    return f"cin >> {to};"
+    tos=line[1].split(' ')
+    reslt=f"cin "
+    for i in tos:
+        reslt+=f">> {i}"
+    return reslt+";"
 def loop(runtime,line):
     command=line[1].split(" ")
     if command[0] == "forever":
