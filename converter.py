@@ -103,6 +103,12 @@ def fromimport(runtime,line):
 def export(runtime,line):
     line=line[1].split(" ")
     return "extern \"C\" {"+f"{line[0]} {line[1]}"+";}"
+def callfunc(runtime,line):
+    cmdname=line[1].split(" ")
+    args=" ".join(cmdname[1:]).split(",")
+    cmdname=cmdname[0]
+    reslt=cmdname+"("+",".join(args)+");"
+    return reslt
 bulitins=(
     {
         "end":"}",
@@ -120,7 +126,8 @@ bulitins=(
         "define":define,
         "return":returns,
         "import":fromimport,
-        "export":export
+        "export":export,
+        "call":callfunc
     }
 )
 COMMENT="""

@@ -21,3 +21,8 @@ end
 123
 321
 ```
+
+# 0.0.2-dev-2
+添加 call 语法
+用法:`call [funcname] [...args]`
+示例见tests/callfunc.sbl

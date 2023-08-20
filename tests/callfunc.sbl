@@ -1,0 +1,11 @@
+define say nickname text
+    output nickname
+    output ": "
+    output text
+    output "\n"
+define end
+main
+    call say "System", "Hello world!"
+    call say "Some_User", "This is just a test."
+    return 0
+end

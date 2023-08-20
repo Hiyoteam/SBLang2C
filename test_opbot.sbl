@@ -1,9 +1,0 @@
-main
-    output "这是一个用SBLang写的聊天机器人。\n"
-    let string not_used
-    loop forever
-        output "Human: "
-        inputto not_used
-        output "OPBot: 我们原神怎么你了\n"
-    end
-end
