@@ -1,4 +1,5 @@
 import converter,sys,os,time,logging,secrets
+VERSION="0.0.1-release"
 class Timer:
     def __init__(self) -> None:
         self.stt=0
@@ -33,7 +34,7 @@ if debug:
 if len(args) < 2:
     print(f"usage: {name} [options] [filename]")
     exit(1)
-print("Welcome to SBLang2C CLI!\n-| Reading File",end="",flush=True)
+print(f"SBLang2C Compiler and converter v{VERSION}\n-| Reading File",end="",flush=True)
 timer.start()
 try:
     with open(filename,"r",encoding="utf-8") as f:
