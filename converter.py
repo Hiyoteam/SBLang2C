@@ -1,5 +1,6 @@
 from uuid import uuid4
 from logging import debug
+from os import path
 
 class Function:
     def __init__(self):
@@ -94,6 +95,11 @@ def let(runtime,line):
         return f"{typeof} {name};"
     content=line[1].split(" ",2)[2]
     return f"{typeof} {name}={content};"
+def fromimport(runtime,line):
+    runtime.externs.add(line[1])
+def export(runtime,line):
+    line=line[1].split(" ")
+    return "extern \"C\" {"+f"{line[0]} {line[1]}"+";}"
 bulitins=(
     {
         "end":"}",
@@ -109,7 +115,9 @@ bulitins=(
         "var":var,
         "let":let,
         "define":define,
-        "return":returns
+        "return":returns,
+        "import":fromimport,
+        "export":export
     }
 )
 COMMENT="""
@@ -156,7 +164,7 @@ bulitins=NameSpace(
 )
 class Runtime:
     def __init__(self):
-        self.heads,self.head,self.externs,self.functions,self.main,self.global_checker,self.cache=set(),[],[],[],[],[],{}
+        self.heads,self.head,self.externs,self.functions,self.main,self.global_checker,self.cache=set(),[],set(),[],[],[],{}
         self.type_detector={}
         self.loops={}
     def translate(self,line,run_checkers=True,return_code=False):
@@ -186,7 +194,8 @@ class Runtime:
         debug(f"Headers: {self.heads}")
         for i in self.heads:
             final+=f"#include <{i}>\n"
-        final+="\n\n".join(self.head+self.externs+self.functions+self.main)
+        final+="\n\n".join(self.head+self.functions+self.main)
+        self.externs=list(self.externs)
         return final
 
     

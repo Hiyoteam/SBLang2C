@@ -1,0 +1,3 @@
+define plusOne num
+    return (1+num)
+define end
