@@ -1,5 +1,5 @@
 main
-    import test_import_head.sbl
+    import import_head.sbl
     output "1+1="
     output plusOne(1)
 end
