@@ -2,3 +2,4 @@
 .vscode/
 __pycache__/
 _sblang_temp.cpp
+.DS_Store
