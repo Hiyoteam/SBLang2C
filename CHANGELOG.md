@@ -26,3 +26,9 @@ end
 添加 call 语法
 用法:`call [funcname] [...args]`
 示例见tests/callfunc.sbl
+
+# 0.0.2-dev-3
+更新 let 语法：
+ - 去除同时赋值功能（你应该使用var）
+ - 修复一个可能导致语法错误的bug  
+同时更新2numplus.sbl的演示。

@@ -90,14 +90,9 @@ def var(runtime,line):
     else:
         return f"auto {line[0]} = {'='.join(line[1:])};"
 def let(runtime,line):
-    typeof=line[1].split(" ")[0]
-    name=line[1].split(" ")[1]
-    if typeof == "string":
-        runtime.heads.add("string")
-    if len(line[1].split(" ")) == 2:
-        return f"{typeof} {name};"
-    content=line[1].split(" ",2)[2]
-    return f"{typeof} {name}={content};"
+    typeof=" ".join(line[1].split(" ")[:-1])
+    name=line[1].split(" ")[-1]
+    return f"{typeof} {name};"
 def fromimport(runtime,line):
     runtime.externs.add(line[1])
 def export(runtime,line):
