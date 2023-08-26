@@ -1,5 +1,5 @@
 import converter,sys,os,time,logging,secrets
-VERSION="0.0.2-dev-3"
+VERSION="0.0.2-release"
 class Timer:
     def __init__(self) -> None:
         self.stt=0
