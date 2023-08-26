@@ -18,6 +18,8 @@ gcc_executable="g++"
 gcc_extra_args=[]
 temps=[]
 name_executeable=".".join(filename.split(".")[:-1])
+if os.name == "nt":
+    name_executeable+=".exe"
 for arg in argss:
     arg=arg.split("=",1)
     if len(arg) == 1:
