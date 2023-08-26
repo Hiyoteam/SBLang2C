@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  release:
+    types:
+      - created
 
 jobs:
   discordNotification:
@@ -21,7 +24,8 @@ jobs:
         id: current_time
         run: echo "::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')"
 
-      - name: Send Discord notification
+      - name: Send Discord notification on push
+        if: github.event_name == 'push'
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{
@@ -32,6 +36,24 @@ jobs:
                 {
                   "title": "Git Push Details",
                   "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nGit Commit Hash: [${{ github.sha }}](${{ github.event.compare }})\nContent: ${{ steps.commit.outputs.message }}",
+                  "color": 16777215
+                }
+              ]
+            }' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Send Discord notification on release
+        if: github.event_name == 'release'
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{
+              "content": "New release in the repository!",
+              "username": "GitHub",
+              "avatar_url": "https://github.com/favicon.ico",
+              "embeds": [
+                {
+                  "title": "Release Details",
+                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nTag: ${{ github.event.release.tag_name }}\nRelease Notes: ${{ github.event.release.body }}",
                   "color": 16777215
                 }
               ]
