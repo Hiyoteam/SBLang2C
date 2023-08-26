@@ -1,5 +1,5 @@
 import converter,sys,os,time,logging,secrets
-VERSION="0.0.3-release"
+VERSION="0.0.4-dev-1"
 class Timer:
     def __init__(self) -> None:
         self.stt=0
@@ -118,16 +118,19 @@ print("-| Compiling with g++")
 command=f"{gcc_executable} _sblang_temp.cpp "
 for i in links:
     command+=f"{i} "
-command+=f"-finput-charset=UTF-8 -std=c++20 -o {name_executeable}"
+command+=f"-finput-charset=UTF-8 -std=c++20 -I {os.getcwd()}/sblang_builtin_funcs/require_libs/ -o {name_executeable}"
+if runtime.options["USE_LIBCURL"]:
+    command+=" -lcurl"
 if gcc_extra_args != []:
     for i in gcc_extra_args:
         command+=" "+i
+
 try:
     os.remove(name_executeable)
 except:
     pass
 gcc=os.popen(command)
-print("- -| Awaiting G++ execute",end="",flush=True)
+print(f"- -| Awaiting G++ execute: {command}",end="",flush=True)
 timer.start()
 times=0
 gcc.read()

@@ -117,8 +117,13 @@ def use(runtime,line):
             runtime.heads.add(f"{getcwd()}/sblang_builtin_funcs/{i}.h")
         else:
             raise CompileError(f"SBlang2C Builtin method not found: {i}")
-
-
+        if i == "requests":
+            runtime.options["USE_LIBCURL"]=True
+def string(runtime,line):
+    res=f"string {line[1].split(' ')[0]}"
+    if len(line[1].split(' ')) > 1:
+        res+='='+(' '.join(line[1].split(' ')[1:]))
+    return res+";"
 
 bulitins=(
     {
@@ -143,6 +148,7 @@ bulitins=(
         "switch":switch,
         "case":case,
         "use":use,
+        "string":string
     }
 )
 COMMENT="""
@@ -190,6 +196,9 @@ bulitins=NameSpace(
 class Runtime:
     def __init__(self):
         self.heads,self.head,self.externs,self.functions,self.main,self.global_checker,self.cache=set(),[],set(),[],[],[],{}
+        self.options={
+            "USE_LIBCURL":False
+        }
         self.type_detector={}
         self.loops={}
     def translate(self,line,run_checkers=True,return_code=False):
