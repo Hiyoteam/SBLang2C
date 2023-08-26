@@ -1,0 +1,23 @@
+name: Discord Notification
+
+on:
+  push:
+    branches:
+      - main  # 替换为你的主分支名称
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Send Discord Notification
+        uses: discord/discord-action@v2
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          content: |
+            Code pushed to repository: ${{ github.repository }}
+            Commit message: ${{ github.event.head_commit.message }}
+            Pushed by: ${{ github.actor }}
