@@ -1,0 +1,11 @@
+use requests,json
+main
+    var response=web_get("http://httpbin.org/ip")
+    string ip="Unknown"
+    if response.status_code == 200
+        set ip=get_json_value(response.text,"origin")
+    end
+    output "Your IP: "
+    output ip
+    output "\n"
+end
