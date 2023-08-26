@@ -27,7 +27,7 @@ jobs:
               "embeds": [
                 {
                   "title": "New Commit",
-                  "description": ${{ steps.commit.outputs.message }},
+                  "description": "'"${{ steps.commit.outputs.message }}"'",
                   "color": 16777215
                 }
               ]
