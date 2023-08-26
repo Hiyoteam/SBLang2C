@@ -17,21 +17,21 @@ jobs:
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1 $GITHUB_SHA)"
 
-      - name: Set changed files
-        id: files
-        run: echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r $GITHUB_SHA)"
+      - name: Get current time
+        id: current_time
+        run: echo "::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')"
 
       - name: Send Discord notification
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{
-              "content": "New push event occurred in the repository.",
+              "content": "New push in the repository.",
               "username": "GitHub",
               "avatar_url": "https://example.com/avatar.png",
               "embeds": [
                 {
                   "title": "Git Push Details",
-                  "description": "Operator: ${{ github.actor }}\nTime: $(date)\nGit Commit Hash: ${{ github.sha }}\nContent: ${{ steps.commit.outputs.message }}\nChanged Files: ${{ steps.files.outputs.files }}",
+                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nGit Commit Hash: ${{ github.sha }}\nContent: ${{ steps.commit.outputs.message }}",
                   "color": 16777215
                 }
               ]
