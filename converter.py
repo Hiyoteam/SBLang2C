@@ -1,6 +1,6 @@
 from uuid import uuid4
 from logging import debug
-from os import path
+from os import path,getcwd
 
 class Function:
     def __init__(self):
@@ -14,7 +14,6 @@ def _get_random_varname():
 def output(runtime,line):
     return f"cout << {line[1]};\n"
 def main(runtime,line):
-    runtime.heads.add("bits/stdc++.h")
     runtime.head+=["using namespace std;"]
     runtime.main+=["int main(int argc,char **argv,char **envp){"]
 def _if(runtime,line):
@@ -111,6 +110,15 @@ def case(runtime,line):
         return f"case {line[1]}:"
     else:
         return f"default:"
+def use(runtime,line):
+    # Use SBLang2C builtin methods
+    for i in line[1].split(","):
+        if path.exists(f"{getcwd()}/sblang_builtin_funcs/{i}.h"):
+            runtime.heads.add(f"{getcwd()}/sblang_builtin_funcs/{i}.h")
+        else:
+            raise CompileError(f"SBlang2C Builtin method not found: {i}")
+
+
 
 bulitins=(
     {
@@ -133,7 +141,8 @@ bulitins=(
         "export":export,
         "call":callfunc,
         "switch":switch,
-        "case":case
+        "case":case,
+        "use":use,
     }
 )
 COMMENT="""
@@ -208,6 +217,7 @@ class Runtime:
         final=COMMENT+"\n"
         debug("Exporting....")
         debug(f"Headers: {self.heads}")
+        final+=f"#include <bits/stdc++.h>\n"
         for i in self.heads:
             final+=f"#include <{i}>\n"
         final+="\n\n".join(self.head+self.functions+self.main)

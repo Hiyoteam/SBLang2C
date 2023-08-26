@@ -1,0 +1,11 @@
+use randint
+main
+    var lucky=randint(0,1)
+    switch lucky
+        case 0
+            output "Lucky day!\n"
+            break
+        case 1
+            output "Awww... not lucky.\n"
+    end
+end

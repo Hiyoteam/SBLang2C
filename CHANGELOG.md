@@ -36,3 +36,12 @@ end
 # 0.0.3-dev-1
 添加 switch-case 语法：
 见`tests/switch-case.sbl`
+
+# 0.0.3-dev-2
+添加 use 语法：
+用于声明使用了SBLang2C内置函数。
+
+添加 randint 内置函数：
+randint(int min, int max): 获得从min到max的随机数。
+
+见`tests/random.sbl`
