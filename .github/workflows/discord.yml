@@ -13,13 +13,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Send Discord notification
-        uses: discord/send-message@v1
-        with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: |
-            A new push occurred in the repository.
+      - name: Set commit message
+        id: commit
+        run: echo "::set-output name=message::$(git log --format=%B -n 1 $GITHUB_SHA)"
 
-            Commit message: ${{ github.event.head_commit.message }}
-            Commit author: ${{ github.event.head_commit.author.name }}
-            Commit URL: ${{ github.event.head_commit.url }}
+      - name: Send Discord notification
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{
+              "content": "A new push event occurred in the repository.",
+              "username": "GitHub",
+              "avatar_url": "https://example.com/avatar.png",
+              "embeds": [
+                {
+                  "title": "New Commit",
+                  "description": ${{ steps.commit.outputs.message }},
+                  "color": 16777215
+                }
+              ]
+            }' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
