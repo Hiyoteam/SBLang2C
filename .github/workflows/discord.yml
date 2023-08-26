@@ -47,13 +47,13 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{
-              "content": "New release in the repository!",
+              "content": "New release in the repository.",
               "username": "GitHub",
               "avatar_url": "https://github.com/favicon.ico",
               "embeds": [
                 {
                   "title": "Release Details",
-                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nTag: ${{ github.event.release.tag_name }}\nRelease Notes: ${{ github.event.release.body }}",
+                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nTag: ${{ github.event.release.tag_name }}\nRelease Notes: ${{ github.event.release.body | replace("\"", "\\\"") }}",
                   "color": 16777215
                 }
               ]
