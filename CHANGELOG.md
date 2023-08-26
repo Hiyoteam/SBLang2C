@@ -32,3 +32,7 @@ end
  - 去除同时赋值功能（你应该使用var）
  - 修复一个可能导致语法错误的bug  
 同时更新2numplus.sbl的演示。
+
+# 0.0.3-dev-1
+添加 switch-case 语法：
+见`tests/switch-case.sbl`

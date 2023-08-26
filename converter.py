@@ -104,10 +104,19 @@ def callfunc(runtime,line):
     cmdname=cmdname[0]
     reslt=cmdname+"("+",".join(args)+");"
     return reslt
+def switch(runtime,line):
+    return f"switch({line[1]})"+"{"
+def case(runtime,line):
+    if line[1] != "default":
+        return f"case {line[1]}:"
+    else:
+        return f"default:"
+
 bulitins=(
     {
         "end":"}",
         "else":"}else{",
+        "break":"break;"
     },
     {
         "output":output,
@@ -122,7 +131,9 @@ bulitins=(
         "return":returns,
         "import":fromimport,
         "export":export,
-        "call":callfunc
+        "call":callfunc,
+        "switch":switch,
+        "case":case
     }
 )
 COMMENT="""
