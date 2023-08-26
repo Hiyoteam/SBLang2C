@@ -24,10 +24,6 @@ jobs:
         id: current_time
         run: echo "::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')"
 
-      - name: Replace double quotes in release notes
-        id: release_notes
-        run: echo "::set-output name=notes::${{ github.event.release.body//\"/\\\" }}"
-
       - name: Send Discord notification on push
         if: github.event_name == 'push'
         run: |
@@ -51,13 +47,13 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{
-              "content": "New release in the repository.",
+              "content": "New release in the repository!",
               "username": "GitHub",
               "avatar_url": "https://github.com/favicon.ico",
               "embeds": [
                 {
                   "title": "Release Details",
-                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nTag: ${{ github.event.release.tag_name }}\nRelease Notes: ${{ env.release_notes.notes }}",
+                  "description": "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nTag: ${{ github.event.release.tag_name }}\nRelease Notes: ${{ github.event.release.body }}",
                   "color": 16777215
                 }
               ]
