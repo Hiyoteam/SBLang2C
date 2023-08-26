@@ -27,11 +27,11 @@ jobs:
           -d '{
               "content": "New push in the repository.",
               "username": "GitHub",
-              "avatar_url": "https://example.com/avatar.png",
+              "avatar_url": "https://github.com/favicon.ico",
               "embeds": [
                 {
                   "title": "Git Push Details",
-                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nGit Commit Hash: ${{ github.sha }}\nContent: ${{ steps.commit.outputs.message }}",
+                  "description": "Repo: ${{ github.repository }}\nOperator: ${{ github.actor }}\nTime: ${{ steps.current_time.outputs.time }}\nGit Commit Hash: [${{ github.sha }}](${{ github.event.compare }})\nContent: ${{ steps.commit.outputs.message }}",
                   "color": 16777215
                 }
               ]
