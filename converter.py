@@ -117,7 +117,7 @@ def use(runtime,line):
             runtime.heads.add(f"{getcwd()}/sblang_builtin_funcs/{i}.h")
         else:
             raise CompileError(f"SBlang2C Builtin method not found: {i}")
-        if i == "requests":
+        if i in ["requests"]:
             runtime.options["USE_LIBCURL"]=True
 def string(runtime,line):
     res=f"string {line[1].split('=')[0]}"
