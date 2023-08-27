@@ -1,4 +1,5 @@
 import converter,sys,os,time,logging,secrets
+from traceback import print_exc
 VERSION="0.0.4-dev-3"
 class Timer:
     def __init__(self) -> None:
@@ -57,7 +58,6 @@ try:
         runtime.translate(i)
 except BaseException as e:
     print(f"\n! Error when converting: {e}")
-    from traceback import print_exc
     print_exc()
     exit(1)
 if debug:

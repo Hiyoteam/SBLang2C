@@ -124,6 +124,8 @@ def string(runtime,line):
     if len(line[1].split('=')) > 1:
         res+='='+line[1].split('=',1)[1]
     return res+";"
+def exitprog(runtime,line):
+    return f"exit({line[1]});"
 
 bulitins=(
     {
@@ -148,7 +150,8 @@ bulitins=(
         "switch":switch,
         "case":case,
         "use":use,
-        "string":string
+        "string":string,
+        "exit":exitprog,
     }
 )
 COMMENT="""
