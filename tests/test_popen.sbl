@@ -1,0 +1,9 @@
+use shell
+main
+    output "Popen is"
+    string result=shell("echo 114514")
+    if result != "114514\n"
+        output " not"
+    end
+    output " working"
+end

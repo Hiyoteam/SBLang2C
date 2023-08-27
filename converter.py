@@ -120,9 +120,9 @@ def use(runtime,line):
         if i == "requests":
             runtime.options["USE_LIBCURL"]=True
 def string(runtime,line):
-    res=f"string {line[1].split(' ')[0]}"
-    if len(line[1].split(' ')) > 1:
-        res+='='+(' '.join(line[1].split(' ')[1:]))
+    res=f"string {line[1].split('=')[0]}"
+    if len(line[1].split('=')) > 1:
+        res+='='+line[1].split('=',1)[1]
     return res+";"
 
 bulitins=(

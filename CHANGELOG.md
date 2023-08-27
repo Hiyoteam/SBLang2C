@@ -50,3 +50,7 @@ randint(int min, int max): 获得从min到max的随机数。
 添加 requests 和 json built-in库。  
 使用方式：见`tests/test_web.sbl`  
 实现使用了 libcurl 和 nlohmann 的 json 头文件。
+
+# 0.0.4-dev-2
+添加 shell built-in 方法。
+使用方式：见`tests/test_popen.sbl`
