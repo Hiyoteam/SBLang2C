@@ -1,18 +1,28 @@
-use randint
+use randint,typing
 main
     var number=randint(0,100)
     output "我想好了在0-100间的一个数字，快来猜吧！\n"
-    loop forever
-        let int result
+    let string result
+    loop 10 times as _notUsed
         output "你猜是: "
         inputto result
-        if result == number
-            output "猜对辣！"
-            exit 0
-        elif result > number
-            output "太大啦！"
+        if is_integer(result)
+            var guessed=stoi(result)
+            if guessed == number
+                output "猜对辣！"
+                exit 0
+            elif guessed > number
+                output "太大啦！"
+            elif guessed < number
+                output "太小啦！"
+            else
+                output "你猜的什么玩意"
+            end
         else
-            output "太小啦！"
+            output "哥们输入一个整数好吗"
         end
+        output "\n"
     end
+    output "什么废物 猜这么多次"
+    exit 1
 end

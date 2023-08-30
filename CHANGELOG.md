@@ -62,3 +62,7 @@ randint(int min, int max): 获得从min到max的随机数。
 # 0.0.4-dev-4
 添加 elif syntax.
 使用方式：见`tests/guessnum.sbl`
+
+# 0.0.4-dev-5
+添加 typing.h 和 is_integer 函数。
+更新guessnum.sbl演示。
