@@ -1,0 +1,19 @@
+use randint
+main
+    var number=randint(0,100)
+    output "我想好了在0-100间的一个数字，快来猜吧！\n"
+    loop forever
+        let int result
+        output "你猜是: "
+        inputto result
+        if result == number
+            output "猜对辣！"
+            exit 0
+        end
+        if result > number
+            output "太大啦！"
+        else
+            output "太小啦！"
+        end
+    end
+end
