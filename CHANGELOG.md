@@ -58,3 +58,7 @@ randint(int min, int max): 获得从min到max的随机数。
 # 0.0.4-dev-3
 添加 sleep 方法。
 使用方式：`use sleep`,`call sleep (milliseconds)`
+
+# 0.0.4-dev-4
+添加 elif syntax.
+使用方式：见`tests/guessnum.sbl`

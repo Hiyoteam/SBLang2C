@@ -126,6 +126,8 @@ def string(runtime,line):
     return res+";"
 def exitprog(runtime,line):
     return f"exit({line[1]});"
+def elseif(runtime,line):
+    return "}else if("+line[1]+"){"
 
 bulitins=(
     {
@@ -152,6 +154,7 @@ bulitins=(
         "use":use,
         "string":string,
         "exit":exitprog,
+        "elif":elseif
     }
 )
 COMMENT="""

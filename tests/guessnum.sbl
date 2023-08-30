@@ -9,8 +9,7 @@ main
         if result == number
             output "猜对辣！"
             exit 0
-        end
-        if result > number
+        elif result > number
             output "太大啦！"
         else
             output "太小啦！"
