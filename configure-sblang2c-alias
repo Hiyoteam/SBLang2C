@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 echo "Add this to your ~/.bashrc or ~/.zshrc or another shell's 'read command' file."
 WORKDIR=$(pwd)
 echo "alias sblang2c=\"python3 $WORKDIR/sblang2c.py\""

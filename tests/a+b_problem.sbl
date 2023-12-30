@@ -1,5 +1,5 @@
 main
-    let int num1,num2
+    let unsigned long long int num1,num2
     inputto num1 num2
     var result=(num1+num2)
     output result
